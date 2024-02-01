@@ -178,6 +178,7 @@ impl LineState {
 		// recalculates column
 		self.move_cursor(0)?;
 		self.render(term)?;
+		term.queue(cursor::MoveToColumn(self.current_column))?;
 		Ok(())
 	}
 	pub async fn handle_event(
