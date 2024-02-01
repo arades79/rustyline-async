@@ -224,6 +224,11 @@ impl Readline {
 		))
 	}
 
+	/// Change the prompt
+	pub fn set_prompt(&mut self, prompt: String) {
+		self.line.prompt = prompt;
+	}
+
 	/// Set maximum history length.  The default length is 1000.
 	pub fn set_max_history(&mut self, max_size: usize) {
 		self.line.history.max_size = max_size;
