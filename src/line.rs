@@ -23,7 +23,7 @@ pub struct LineState {
 
 	cluster_buffer: String, // buffer for holding partial grapheme clusters as they come in
 
-	pub(crate) prompt: String,
+	prompt: String,
 	pub should_print_line_on_enter: bool, // After pressing enter, should we print the line just submitted?
 	pub should_print_line_on_control_c: bool, // After pressing control_c should we print the line just cancelled?
 
@@ -170,6 +170,13 @@ impl LineState {
 	}
 	pub fn print(&mut self, string: &str, term: &mut impl Write) -> Result<(), ReadlineError> {
 		self.print_data(string.as_bytes(), term)?;
+		Ok(())
+	}
+	pub fn update_prompt(&mut self, prompt: String, term: &mut impl Write) -> Result<(), ReadlineError> {
+		let prompt_delta = (self.prompt.len() as isize) - (prompt.len() as isize);
+		self.prompt = prompt;
+		self.render(term)?;
+		self.move_cursor(prompt_delta)?;
 		Ok(())
 	}
 	pub async fn handle_event(
