@@ -229,6 +229,12 @@ impl Readline {
 		self.raw_term.queue(Clear(terminal::ClearType::All))?;
 		self.line.clear_and_render(&mut self.raw_term)?;
 		self.raw_term.flush()?;
+    Ok(())
+  }
+
+	/// Change the prompt
+	pub fn update_prompt(&mut self, prompt: String) -> Result<(), ReadlineError> {
+		self.line.update_prompt(prompt, &mut self.raw_term)?;
 		Ok(())
 	}
 
