@@ -177,7 +177,6 @@ impl LineState {
 		self.prompt = prompt;
 		self.move_cursor(prompt_delta)?;
 		self.render(term)?;
-		self.
 		Ok(())
 	}
 	pub async fn handle_event(
