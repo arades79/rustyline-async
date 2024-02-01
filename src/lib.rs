@@ -225,9 +225,10 @@ impl Readline {
 	}
 
 	/// Change the prompt starting on next readline
-	/// Flush after to avoid floating cursors
-	pub fn set_prompt(&mut self, prompt: String) {
+	pub fn set_prompt(&mut self, prompt: String) -> Result<(), ReadlineError> {
 		self.line.prompt = prompt;
+		self.line.render(&mut self.raw_term)?;
+		Ok(())
 	}
 
 	/// Set maximum history length.  The default length is 1000.
