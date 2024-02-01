@@ -225,6 +225,7 @@ impl Readline {
 	}
 
 	/// Change the prompt starting on next readline
+	/// Flush after to avoid floating cursors
 	pub fn set_prompt(&mut self, prompt: String) {
 		self.line.prompt = prompt;
 	}
