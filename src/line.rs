@@ -1,10 +1,7 @@
 use std::io::{self, Write};
 
 use crossterm::{
-	cursor,
-	event::{Event, KeyCode, KeyEvent, KeyEventKind, KeyModifiers},
-	terminal::{Clear, ClearType::*},
-	QueueableCommand,
+	cursor, event::{Event, KeyCode, KeyEvent, KeyEventKind, KeyModifiers}, terminal::{Clear, ClearType::*}, ExecutableCommand, QueueableCommand
 };
 
 use unicode_segmentation::UnicodeSegmentation;
@@ -178,7 +175,7 @@ impl LineState {
 		// recalculates column
 		self.move_cursor(0)?;
 		self.render(term)?;
-		term.queue(cursor::MoveToColumn(self.current_column))?;
+		term.execute(cursor::MoveToColumn(self.current_column))?;
 		Ok(())
 	}
 	pub async fn handle_event(
