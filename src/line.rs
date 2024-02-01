@@ -173,7 +173,7 @@ impl LineState {
 		self.clear(term)?;
 		self.prompt = prompt;
 		// recalculates column
-		self.move_cursor(0)?;
+		self.move_cursor(1)?;
 		self.render(term)?;
 		term.flush()?;
 		Ok(())
