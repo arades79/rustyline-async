@@ -224,7 +224,7 @@ impl Readline {
 		))
 	}
 
-	/// Change the prompt
+	/// Change the prompt starting on next readline
 	pub fn set_prompt(&mut self, prompt: String) {
 		self.line.prompt = prompt;
 	}
