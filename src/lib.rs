@@ -227,7 +227,7 @@ impl Readline {
 	/// Change the prompt starting on next readline
 	pub fn set_prompt(&mut self, prompt: String) -> Result<(), ReadlineError> {
 		self.line.prompt = prompt;
-		self.line.render(&mut self.raw_term)?;
+		self.line.clear_and_render(&mut self.raw_term)?;
 		Ok(())
 	}
 
