@@ -175,8 +175,9 @@ impl LineState {
 	pub fn update_prompt(&mut self, prompt: String, term: &mut impl Write) -> Result<(), ReadlineError> {
 		let prompt_delta = (self.prompt.len() as isize) - (prompt.len() as isize);
 		self.prompt = prompt;
-		self.render(term)?;
 		self.move_cursor(prompt_delta)?;
+		self.render(term)?;
+		self.
 		Ok(())
 	}
 	pub async fn handle_event(
